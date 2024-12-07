@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<h1>{{ department }} Department</h1>
+<div class="row">
+    {% for hod in hods %}
+    <div class="col-md-4 text-center mb-4">
+        <img src="{{ url_for('static', filename=hod.image) }}" alt="{{ hod.name }}" class="img-thumbnail" style="width: 150px; height: 150px;">
+        <h5 class="mt-2">{{ hod.name }}</h5>
+    </div>
+    {% endfor %}
+</div>
+<a href="/departments" class="btn btn-primary mt-3">Back to Departments</a>
+{% endblock %}

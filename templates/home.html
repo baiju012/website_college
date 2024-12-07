@@ -1,0 +1,114 @@
+
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-4">
+    <!-- 4-Image Section -->
+    <div class="row text-center">
+        <div class="col-md-3">
+            <img src="{{ url_for('static', filename='1_image (1).png') }}" class="img-fluid rounded" alt="Feature 1" style="height: 100px;">
+            <p><strong>Feature 1</strong></p>
+        </div>
+        <div class="col-md-3">
+            <img src="{{ url_for('static', filename='1_image (2).png') }}" class="img-fluid rounded" alt="Feature 2" style="height: 100px;">
+            <p><strong>Feature 2</strong></p>
+        </div>
+        <div class="col-md-3">
+            <img src="{{ url_for('static', filename='1.png') }}" class="img-fluid rounded" alt="Feature 3" style="height: 100px;">
+            <p><strong>Feature 3</strong></p>
+        </div>
+        <div class="col-md-3">
+            <img src="{{ url_for('static', filename='2.png') }}" class="img-fluid rounded" alt="Feature 4" style="height: 100px;">
+            <p><strong>Feature 4</strong></p>
+        </div>
+    </div>
+
+<div class="container mt-4">
+    <!-- Alumni Section -->
+    <div class="accordion" id="homeAccordion">
+        <!-- Alumni -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="alumniHeader">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#alumniSection" aria-expanded="true" aria-controls="alumniSection">
+                    Alumni
+                </button>
+            </h2>
+            <div id="alumniSection" class="accordion-collapse collapse show" aria-labelledby="alumniHeader" data-bs-parent="#homeAccordion">
+                <div class="accordion-body">
+                    <div class="row">
+                        {% for alum in data.alumni %}
+                        <div class="col-md-2 text-center">
+                            <img src="{{ url_for('static', filename=alum.image) }}" class="img-fluid rounded" alt="{{ alum.name }}" style="height: 100px; width: 100px;">
+                            <p><strong>{{ alum.name }}</strong></p>
+                            <p>{{ alum.company }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Packages -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="packagesHeader">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#packagesSection" aria-expanded="false" aria-controls="packagesSection">
+                    Highest Package
+                </button>
+            </h2>
+            <div id="packagesSection" class="accordion-collapse collapse" aria-labelledby="packagesHeader" data-bs-parent="#homeAccordion">
+                <div class="accordion-body">
+                    <div class="row">
+                        {% for pkg in data.packages %}
+                        <div class="col-md-2 text-center">
+                            <img src="{{ url_for('static', filename=pkg.image) }}" class="img-fluid rounded" alt="{{ pkg.name }}" style="height: 100px; width: 100px;">
+                            <p><strong>{{ pkg.name }}</strong></p>
+                            <p>{{ pkg.company }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- GATE Scores -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="gateHeader">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#gateSection" aria-expanded="false" aria-controls="gateSection">
+                    GATE Scores
+                </button>
+            </h2>
+            <div id="gateSection" class="accordion-collapse collapse" aria-labelledby="gateHeader" data-bs-parent="#homeAccordion">
+                <div class="accordion-body">
+                    <div class="row">
+                        {% for score in data.gate_scores %}
+                        <div class="col-md-2 text-center">
+                            <img src="{{ url_for('static', filename=score.image) }}" class="img-fluid rounded" alt="Rank {{ score.rank }}" style="height: 100px; width: 100px;">
+                            <p><strong>{{ score.name }}</strong></p>
+                            <p>Rank: {{ score.rank }}</p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Workshops -->
+        <div class="accordion-item">
+            <h2 class="accordion-header" id="workshopsHeader">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#workshopsSection" aria-expanded="false" aria-controls="workshopsSection">
+                    Workshops
+                </button>
+            </h2>
+            <div id="workshopsSection" class="accordion-collapse collapse" aria-labelledby="workshopsHeader" data-bs-parent="#homeAccordion">
+                <div class="accordion-body">
+                    <div class="row">
+                        {% for workshop in data.workshops %}
+                        <div class="col-md-2 text-center">
+                            <img src="{{ url_for('static', filename=workshop.image) }}" class="img-fluid rounded" alt="{{ workshop.topic }}" style="height: 100px; width: 100px;">
+                            <p><strong>{{ workshop.topic }}</strong></p>
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
